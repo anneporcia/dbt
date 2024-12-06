@@ -14,9 +14,6 @@ sources:
             tests:
               - unique
               - not_null
-              - relationships:
-                  field: user_id
-                  to: ref('orders')
 
       - name: orders
         columns:
@@ -31,9 +28,8 @@ sources:
               - not_null
               - relationships:
                   field: id
-                  to: ref('customers')
+                  to: source('jaffle_shop', 'customers')
           - name: status
             tests:
               - accepted_values:
-                  values:
-                    - ["returned","completed","return_pending","shipped", "placed"]
+                  values: ['returned','completed','return_pending','shipped', 'placed']
